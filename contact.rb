@@ -62,21 +62,24 @@ class Contact
           puts "Please enter new value for Last Name:"
             lastname_new = gets.chomp.to_s
               @last_name = lastname_new
-                puts "Changed Last Name to #{last_name}."
+                return @last_name
+                puts "Changed Last Name to #{@last_name}."
         end
 
         if update == 3
           puts "Please enter new value for Email:"
             email_new = gets.chomp.to_s
               @email = email_new
-                puts "Changed Email to #{email}."
+                return @email
+                puts "Changed Email to #{@email}."
         end
 
         if update == 4
           puts "Please enter new value for Note:"
             note_new = gets.chomp
               @note = note_new
-                puts "Changed Note to #{note}."
+                return @note
+                puts "Changed Note to #{@note}."
         end
   end
 
@@ -90,37 +93,27 @@ class Contact
     puts '[2] Last Name'
     puts '[3] Email'
     puts 'Enter a number: '
-    input = gets.chomp
+    input = gets.chomp.to_i
     if input == 1
       puts "Please enter contact's First Name:"
-        firstname_query = gets.chomp
-          firstname_query.each do |firstname|
-            if firstname_query == firstname
-              puts "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-            else
-              puts "No ID found for '#{firstname_query}'."
-            end
+        search_first = gets.chomp.to_s
+          @@contacts.each do |item|
+            return item if item.first_name == search_first
           end
-    elsif input == 2
-        puts "Please enter contact's Last Name:"
-          lastname_query = gets.chomp
-            lastname_query.each do |lastname|
-              if lastname_query == lastname
-                puts "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-              else
-                puts "No ID found for '#{lastname_query}'."
-              end
-            end
-    elsif input == 3
-        puts "Please enter contact's Email:"
-          email_query = gets.chomp
-            email_query.each do |email|
-              if email_query == email
-                puts "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-              else
-                puts "No ID found for '#{email_query}'."
-              end
-            end
+    end
+    if input == 2
+      puts "Please enter contact's Last Name:"
+        search_last = gets.chomp.to_s
+          @@contacts.each do |item|
+            return item if item.last_name == search_last
+          end
+    end
+    if input == 3
+      puts "Please enter contact's Email:"
+        search_email = gets.chomp.to_s
+          @@contacts.each do |item|
+            return item if item.email == search_email
+          end
     end
   end
 
@@ -135,8 +128,8 @@ class Contact
 
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
-  def delete(contact_id)
-      @@contacts.delete_if {contact_id == @id} #I'm honestly just making an educated guess with this one. Or just a regular guess.
+  def delete
+      @@contacts.delete(self) #I'm honestly just making an educated guess with this one. Or just a regular guess.
   end
 
   # Feel free to add other methods here, if you need them.
