@@ -28,6 +28,11 @@ class CRM
     case user_selected
     when 1 then add_new_contact
     when 2 then modify_existing_contact
+    when 3 then delete_contact
+    when 4 then display_all_contacts
+    when 5 then search_by_attribute
+    when 6 then exit!
+    end
     # Finish off the rest for 3 through 6
     # To be clear, the methods add_new_contact and modify_existing_contact
     # haven't been implemented yet
