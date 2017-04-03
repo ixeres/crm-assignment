@@ -135,8 +135,8 @@ class Contact
 
   # This method should delete the contact
   # HINT: Check the Array class docs for built-in methods that might be useful here
-  def delete
-
+  def delete(contact_id)
+      @@contacts.delete_if {contact_id == @id} #I'm honestly just making an educated guess with this one. Or just a regular guess.
   end
 
   # Feel free to add other methods here, if you need them.
