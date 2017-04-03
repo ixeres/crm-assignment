@@ -1,14 +1,13 @@
-require_relative 'crm'
-
 class Contact
 
   attr_accessor :first_name, :last_name, :email, :note
   attr_reader :id
 
   @@contacts = []
+  @@id =0
 
   # This method should initialize the contact's attributes
-  def initialize(first_name, last_name, email, note)
+  def initialize(first_name, last_name, email, note = 'none')
     @first_name = first_name
     @last_name = last_name
     @email = email
@@ -35,11 +34,12 @@ class Contact
   # and return the contact who has that id
   def self.find
     puts "Please enter contact ID:"
-      query = gets.chomp
+      query = gets.chomp.to_i
         query.each do |get_id|
-          if get_id == self.@id
+          if get_id == Contact(@id)
             print "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-          else puts "No contact found."
+          else
+            puts "No contact found."
           end
         end
       end
@@ -63,23 +63,22 @@ class Contact
         firstname_new = gets.chomp
           @@id.first_name = firstname_new
           puts "Changed First Name to #{@@id.first_name}."
-    elsif update == 2
+    if update == 2
       puts "Please enter new value for Last Name:"
         lastname_new = gets.chomp
           @@id.last_name = lastname_new
           puts "Changed Last Name to #{@@id.last_name}."
-    elsif update == 3
+    if update == 3
       puts "Please enter new value for Email:"
         email_new = gets.chomp
           @@id.email = email_new
           puts "Changed Email to #{@@id.email}."
-    elsif update == 4
+    if update == 4
       puts "Please enter new value for Note:"
         note_new = gets.chomp
           @@id.note = note_new
           puts "Changed Note to #{@@id.note}."
-    else #method that calls main menu.
-    end
+    else return#method that calls main menu.
     end
   end
 
@@ -101,7 +100,8 @@ class Contact
           firstname_query.each do |firstname|
             if firstname_query == firstname
               puts "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-            else puts "No ID found for '#{firstname_query}'."
+            else
+              puts "No ID found for '#{firstname_query}'."
               end
             end
           end
@@ -112,8 +112,8 @@ class Contact
             lastname_query.each do |lastname|
               if lastname_query == lastname
                 puts "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-              else puts "No ID found for '#{lastname_query}'."
-                end
+              else
+                puts "No ID found for '#{lastname_query}'."
               end
             end
           end
@@ -123,15 +123,11 @@ class Contact
             email_query.each do |email|
               if email_query == email
                 puts "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-              else puts "No ID found for '#{email_query}'."
-                end
+              else
+                puts "No ID found for '#{email_query}'."
               end
             end
           end
-      else return
-      end
-    end
-  end
 
   # This method should delete all of the contacts
   def self.delete_all
