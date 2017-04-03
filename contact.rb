@@ -119,11 +119,11 @@ class Contact
 
   # This method should delete all of the contacts
   def self.delete_all
-    @@contacts.delete_all
+    @@contacts = []
   end
 
   def full_name
-    #... What should this do? Display the full name of a contact, I guess. I'll get back to it.
+    "#{@first_name} #{@last_name}"
   end
 
   # This method should delete the contact
