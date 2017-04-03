@@ -5,6 +5,8 @@ class Contact
   attr_accessor :first_name, :last_name, :email, :note
   attr_reader :id
 
+  @@contacts = []
+
   # This method should initialize the contact's attributes
   def initialize(first_name, last_name, email, note)
     @first_name = first_name
@@ -31,9 +33,16 @@ class Contact
 
   # This method should accept an id as an argument
   # and return the contact who has that id
-  def self.find(query)
-    query == @id
-    print "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
+  def self.find
+    puts "Please enter contact ID:"
+      query = gets.chomp
+        query.each do |get_id|
+          if get_id == self.@id
+            print "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
+          else puts "No contact found."
+          end
+        end
+      end
   end
 
   # This method should allow you to specify
@@ -130,7 +139,7 @@ class Contact
   end
 
   def full_name
-
+    #... What should this do? Display the full name of a contact, I guess. I'll get back to it.
   end
 
   # This method should delete the contact
@@ -140,5 +149,7 @@ class Contact
   end
 
   # Feel free to add other methods here, if you need them.
+
+  #No. I refuse.
 
 end
