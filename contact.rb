@@ -4,7 +4,7 @@ class Contact
   attr_reader :id
 
   @@contacts = []
-  @@id =0
+  @@id = 0
 
   # This method should initialize the contact's attributes
   def initialize(first_name, last_name, email, note = 'none')
@@ -35,9 +35,7 @@ class Contact
   def self.find
     puts "Please enter contact ID:"
       query = gets.chomp.to_i
-        @@contacts.each { |listing| return listing if listing.id == query }
-          print "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-      end
+        @@contacts.each { |listing| return listing if listing.id == query } #inline arguments for .each method. Much more compact! Refer back when you inevitably mess up trying to do it later on.
   end
 
   # This method should allow you to specify
@@ -45,36 +43,41 @@ class Contact
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
   def update
-    puts 'Update Contact:'
+    puts "Update Contact:"
     puts '[1] First Name'
     puts '[2] Last Name'
     puts '[3] Email'
     puts '[4] Note'
-    puts '[5] Return to Main Menu'
     puts 'Enter a number: '
-    update = gets.chomp
-    if update == 1
-      puts "Please enter new value for First Name:"
-        firstname_new = gets.chomp
-          @@id.first_name = firstname_new
-          puts "Changed First Name to #{@@id.first_name}."
-    if update == 2
-      puts "Please enter new value for Last Name:"
-        lastname_new = gets.chomp
-          @@id.last_name = lastname_new
-          puts "Changed Last Name to #{@@id.last_name}."
-    if update == 3
-      puts "Please enter new value for Email:"
-        email_new = gets.chomp
-          @@id.email = email_new
-          puts "Changed Email to #{@@id.email}."
-    if update == 4
-      puts "Please enter new value for Note:"
-        note_new = gets.chomp
-          @@id.note = note_new
-          puts "Changed Note to #{@@id.note}."
-    else return#method that calls main menu.
-    end
+      update = gets.chomp.to_i
+        if update == 1
+          puts "Please enter new value for First Name:"
+            firstname_new = gets.chomp.to_s
+              @first_name = firstname_new
+                return @first_name
+                puts "Changed First Name to #{@first_name}."
+        end
+
+        if update == 2
+          puts "Please enter new value for Last Name:"
+            lastname_new = gets.chomp.to_s
+              @last_name = lastname_new
+                puts "Changed Last Name to #{last_name}."
+        end
+
+        if update == 3
+          puts "Please enter new value for Email:"
+            email_new = gets.chomp.to_s
+              @email = email_new
+                puts "Changed Email to #{email}."
+        end
+
+        if update == 4
+          puts "Please enter new value for Note:"
+            note_new = gets.chomp
+              @note = note_new
+                puts "Changed Note to #{note}."
+        end
   end
 
   # This method should work similarly to the find method above
@@ -86,7 +89,6 @@ class Contact
     puts '[1] First Name'
     puts '[2] Last Name'
     puts '[3] Email'
-    puts '[4] Return to Main Menu'
     puts 'Enter a number: '
     input = gets.chomp
     if input == 1
@@ -97,11 +99,9 @@ class Contact
               puts "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
             else
               puts "No ID found for '#{firstname_query}'."
-              end
             end
           end
-        end
-      elsif input == 2
+    elsif input == 2
         puts "Please enter contact's Last Name:"
           lastname_query = gets.chomp
             lastname_query.each do |lastname|
@@ -111,8 +111,7 @@ class Contact
                 puts "No ID found for '#{lastname_query}'."
               end
             end
-          end
-      elsif input == 3
+    elsif input == 3
         puts "Please enter contact's Email:"
           email_query = gets.chomp
             email_query.each do |email|
@@ -122,7 +121,8 @@ class Contact
                 puts "No ID found for '#{email_query}'."
               end
             end
-          end
+    end
+  end
 
   # This method should delete all of the contacts
   def self.delete_all
