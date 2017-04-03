@@ -41,7 +41,37 @@ class Contact
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
   def update
-
+    puts 'Update Contact:'
+    puts '[1] First Name'
+    puts '[2] Last Name'
+    puts '[3] Email'
+    puts '[4] Note'
+    puts '[5] Return to Main Menu'
+    puts 'Enter a number: '
+    update = gets.chomp
+    if update == 1
+      puts "Please enter new value for First Name:"
+        firstname_new = gets.chomp
+          @@id.first_name = firstname_new
+          puts "Changed First Name to #{@@id.first_name}."
+    elsif update == 2
+      puts "Please enter new value for Last Name:"
+        lastname_new = gets.chomp
+          @@id.last_name = lastname_new
+          puts "Changed Last Name to #{@@id.last_name}."
+    elsif update == 3
+      puts "Please enter new value for Email:"
+        email_new = gets.chomp
+          @@id.email = email_new
+          puts "Changed Email to #{@@id.email}."
+    elsif update == 4
+      puts "Please enter new value for Note:"
+        note_new = gets.chomp
+          @@id.note = note_new
+          puts "Changed Note to #{@@id.note}."
+    else #method that calls main menu.
+    end
+    end
   end
 
   # This method should work similarly to the find method above
@@ -89,15 +119,14 @@ class Contact
               end
             end
           end
-      else
-
+      else return
       end
     end
   end
 
   # This method should delete all of the contacts
   def self.delete_all
-
+    @@contacts.delete_all
   end
 
   def full_name
