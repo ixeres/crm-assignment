@@ -35,13 +35,8 @@ class Contact
   def self.find
     puts "Please enter contact ID:"
       query = gets.chomp.to_i
-        query.each do |get_id|
-          if get_id == Contact(@id)
-            print "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
-          else
-            puts "No contact found."
-          end
-        end
+        @@contacts.each { |listing| return listing if listing.id == query }
+          print "ID #{@id} found for Contact: #{@id.last_name}, #{@id.first_name}. Email: #{@id.email}, Note: #{@id.note}."
       end
   end
 
